@@ -1,0 +1,45 @@
+<!-- <app-header fxLayout="column"></app-header>
+<div class="app-container">
+
+  <div fxLayout="row" fxFlex="100">
+    <app-sidemenu  fxLayout="column" fxFlex="300px"></app-sidemenu>
+    <div class="content" fxLayout="column" fxFlex>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div> -->
+ 
+<!-- <app-footer fxLayout="column"></app-footer> -->
+<div class="container">
+  <div class="row grow w-100 app-container">
+    <div class="col-12 bg-header py-3">
+      <div class="header-row">
+        <!-- <a href="javaScript:void(0);" class="sidemenu-toggler" (click)="sidenav.toggle()"><img src="../../assets/images/sidemenu-toggler.png" /></a> -->
+        <div class="ml-lg-2 logo-block"><img src="../../assets/images/mcit_logo.png"></div>
+        <span style="font-size:32px ; font-weight:bold ;color:floralwhite"> MCIT Web App Project</span>
+        <div class="user-block">
+            <div class="user-profile rounded-circle mr-lg-5" (click)="onUserClick()">
+                <a href="javascript:;">
+                    <img  src="../../assets/images/avathar.svg" alt="Profile" class="rounded-circle" />
+                </a>             
+            </div>
+            <div class="text-center" >
+              <span> {{user}} </span>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-3 side-nav-container py-3">
+      <app-sidemenu fxLayout="column" fxFlex="300px"></app-sidemenu>
+    </div>
+    <div class="main col-9  py-3">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="w-100">
+      <div class="col-12 py-3 bg-header">
+
+        <!-- <app-footer fxLayout="column"></app-footer> -->
+      </div>
+    </div>
+  </div>

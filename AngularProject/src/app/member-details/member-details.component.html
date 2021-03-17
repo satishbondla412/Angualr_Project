@@ -1,0 +1,53 @@
+<!-- <p>member-details works!</p> -->
+
+<div >
+    <div class="dropshadow-box cp-row mb-4 mx-1  mx-md-0">
+      <form [formGroup]="memberDeatilsForm">
+        <div class="form-group">
+          <label for="country" >User Name</label>
+          <select (change)="assigneeChange($event.target.value)"  [ngClass]="{ 'is-invalid':  submitted && membersForm.userName.errors }"
+            formControlName="userName" class="form-control" id="userName">
+            <option *ngFor="let assignee of assignees" [value]="assignee.id">{{assignee.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="country" >Project Name</label>
+          <select (change)="assigneeChange($event.target.value)"  [ngClass]="{ 'is-invalid':  submitted && membersForm.projectName.errors }"
+            formControlName="projectName" class="form-control" id="projectName">
+            <option *ngFor="let project of projects" [value]="project.id">{{project.name}}</option>
+          </select>
+          <!-- <div
+            *ngIf="(billingDetails.Country.touched && billingDetails.Country.errors) || (submitted && billingDetails.Country.errors)">
+            <div class='text-danger'
+              *ngIf="billingDetails.Country.errors.required">{{'WITH_EXISTING_CREDIT_CARD.country_required' | translate}}</div>
+          </div> -->
+        </div>
+<!--         
+        <div *ngIf ="!memberID" class="form-group">
+          <label for="username">User ID</label>
+          <input type="text" formControlName="userId" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted &&  membersForm.userId.errors }" />
+          <div *ngIf="submitted &&  membersForm.userId.errors" class="invalid-feedback">
+            <div *ngIf="membersForm.userId.errors.required">userId are required</div>
+          </div>
+        </div> -->
+
+        <!-- <div class="form-group">
+          <label for="country" >Role</label>
+          <select (change)="assigneeChange($event.target.value)"  [ngClass]="{ 'is-invalid':  submitted && membersForm.role.errors }"
+            formControlName="role" class="form-control" id="assignee">
+            <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
+          </select>
+        </div> -->
+        
+      </form>
+      <div class="row my-3">
+        <div class="col text-center text-md-right btn-order">
+          <button type="button"  class="btn  btn-primary mt-3 mx-2" (click)="cancel()">Cancel</button>
+          <button type="button" (click)="save()" class="btn btn-primary mt-3">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  

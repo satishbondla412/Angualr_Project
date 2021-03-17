@@ -1,0 +1,12 @@
+<div class="side-nav" id="sidebar-menu">
+  <div id="sidebar-menu">
+  <ul class="side-nav-menu-items">
+      <li class="pointer-cursor" ><a (click)="clickToNavigate('/tasks')" [routerLink]="['/tasks']" routerLinkActive="is-active">List of Tasks</a></li>
+      <li class="pointer-cursor" *ngIf="role == 'admin'" ><a (click)="clickToNavigate('/users')" [routerLink]="['/users']" routerLinkActive="is-active">Manage Users</a></li>
+      <li class="pointer-cursor" *ngIf="role == 'admin' || role =='manager'"><a (click)="clickToNavigate('/projects-members')"  [routerLink]="['/projects-members']" routerLinkActive="is-active">Project Members</a></li>
+      <li class="pointer-cursor"  *ngIf="role == 'admin' || role =='manager'"><a (click)="clickToNavigate('/projects')"  [routerLink]="['/projects']" routerLinkActive="is-active">Manage Projects</a></li>
+      <li class="pointer-cursor" ><a (click)="logout()" routerLinkActive="is-active">LogOut</a></li>
+    </ul>
+</div>
+</div>
+<!-- <Ng4-loading-spinner></Ng4-loading-spinner> -->
