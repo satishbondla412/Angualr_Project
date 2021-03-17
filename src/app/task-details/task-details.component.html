@@ -47,12 +47,17 @@
             formControlName="taskStatus" class="form-control">
             <option *ngFor="let taskStatus of taskStatuses" [value]="taskStatus.name">{{taskStatus.name}}</option>
           </select>
-          <!-- <div
-            *ngIf="(billingDetails.Country.touched && billingDetails.Country.errors) || (submitted && billingDetails.Country.errors)">
-            <div class='text-danger'
-              *ngIf="billingDetails.Country.errors.required">{{'WITH_EXISTING_CREDIT_CARD.country_required' | translate}}</div>
-          </div> --> 
         </div>
+
+        <div class="form-group">
+          <label for="deadline">Dead Line</label>
+          <input type="text" formControlName="deadline" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted &&  tasksForm.deadline.errors }" />
+          <div *ngIf="submitted &&  tasksForm.deadline.errors" class="invalid-feedback">
+            <div *ngIf="tasksForm.deadline.errors.required">Description is required</div>
+          </div>
+        </div>
+
       </form>
       <div class="row my-3">
         <div class="col text-center text-md-right btn-order">

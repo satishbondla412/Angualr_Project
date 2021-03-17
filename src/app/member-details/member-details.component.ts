@@ -39,6 +39,7 @@ export class MemberDetailsComponent implements OnInit {
       this.memberID = params['id']
     });
     this.spinner.show();
+    
     this.formBuilder(null);
     this.usersService.getUsers(localStorage.getItem('apiToken')).subscribe((resp) => {
       this.assignees = resp;
@@ -77,9 +78,9 @@ export class MemberDetailsComponent implements OnInit {
     debugger;
     let details = data ? data : null;  
     this.memberDeatilsForm = this.fb.group({
-      assignee: [ (details && details.user_id) ? details.user_id : '', Validators.required],
-      projectName: [ (details && details.project_id) ?details.project_id : '', Validators.required],
-      userId: [ (details && details.id) ? details.id : '', Validators.required]
+      userName: [ (details && details.user_id) ? details.user_id : '', Validators.required],
+      projectName: [ (details && details.project_id) ?details.project_id : '', Validators.required]
+     // userId: [ (details && details.id) ? details.id : '', Validators.required]
       // role: [ (details && details.project_id) ? details.project_id : '', Validators.required]
     });
   }
@@ -105,8 +106,8 @@ export class MemberDetailsComponent implements OnInit {
     let formValue = this.memberDeatilsForm.value;
         const formReqData = {
           api_token: localStorage.getItem('apiToken'),
-          user_id: formValue.assignee,
-          project_id:formValue.projectName,
+          user_id: formValue.userName,
+          project_id:formValue.projectName
          // AssignedTo: formValue.assignee,
           // project_id: formValue.projectID,
           // status: formValue.taskStatus
@@ -128,6 +129,7 @@ export class MemberDetailsComponent implements OnInit {
          else {
           this.projectMemberService.updateProjectMember(this.memberID, formReqData).subscribe((response)=>{
                this.router.navigate([`projects-members`]);
+               alert("Member Updated successfully");
           },
           err => {
             this.spinner.hide();

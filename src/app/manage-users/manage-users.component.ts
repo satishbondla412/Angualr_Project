@@ -52,12 +52,19 @@ export class ManageUsersComponent implements OnInit {
     this.usersService.deleteUser(this.deleteId, localStorage.getItem('apiToken')).subscribe((response) => {
       this.usersService.getUsers(localStorage.getItem('apiToken')).subscribe((tasksResp) => {
         this.users = tasksResp;
+        alert("User deleted successfully");
       },
         err => {
           if (err.error) {
             alert(err.error.message);
           }
         });
-    })
+     },
+    err => {
+      if (err.error) {
+        alert(err.error.message);
+      }
+    });
+    
   }
 }

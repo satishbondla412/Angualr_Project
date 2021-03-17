@@ -67,14 +67,14 @@ export class UserDetailsComponent implements OnInit {
     let details = data ? data : null;
     if (this.userID) {
       this.userDeatilsForm = this.fb.group({
-        assignee: [(details && details.id) ? details.id : '', Validators.required],
+        assignee: [(details && details.name) ? details.name : '', Validators.required],
         loginId: [(details && details.id) ? details.id : '', Validators.required],
         role: [(details && details.user_role) ? details.user_role : '', Validators.required],
         email: [(details && details.email) ? details.email : '', Validators.required]
       })
     } else {
       this.userDeatilsForm = this.fb.group({
-        assignee: [(details && details.id) ? details.id : '', Validators.required],
+        assignee: [(details && details.name) ? details.name : '', Validators.required],
         password: [(details && details.password) ? details.password : '', Validators.required],
         role: [(details && details.user_role) ? details.user_role : '', Validators.required],
         email: [(details && details.email) ? details.email : '', Validators.required]

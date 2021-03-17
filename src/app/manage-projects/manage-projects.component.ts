@@ -56,6 +56,7 @@ export class ManageProjectsComponent implements OnInit {
     this.projectsService.deleteProject(this.deleteId,localStorage.getItem('apiToken')).subscribe((response)=>{
       this.projectsService.getProjects(localStorage.getItem('apiToken')).subscribe((tasksResp) => {
         this.projects = tasksResp;
+        alert("Project deleted successfully");
     },
     err => {
       if (err.error) {

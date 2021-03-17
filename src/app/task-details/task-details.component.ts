@@ -67,7 +67,8 @@ export class TasksDetailsComponent implements OnInit {
       description: [ (details && details.description) ?details.description : '', Validators.required],
       assignee: [ (details && details.AssignedTo) ? details.AssignedTo : '', Validators.required],
       projectID: [ (details && details.project_id) ? details.project_id : '', Validators.required],
-      taskStatus: [ (details && details.status) ? details.status : '', Validators.required]
+      taskStatus: [ (details && details.status) ? details.status : '', Validators.required],
+      deadline: [ (details && details.dead_line) ? details.dead_line : '', Validators.required]
     });
   }
 
@@ -97,11 +98,13 @@ export class TasksDetailsComponent implements OnInit {
           description:formValue.description,
           AssignedTo: formValue.assignee,
           project_id: formValue.projectID,
-          status: formValue.taskStatus
+          status: formValue.taskStatus,
+          dead_line :formValue.deadline
         };
          if(!this.taskID){
           this.tasksService.CreateTask(formReqData).subscribe(()=>{
             this.router.navigate([`tasks`]);
+            
 
           })
          }

@@ -55,12 +55,18 @@ export class projectMembersComponent implements OnInit {
     this.projectMemberService.deleteProjectMember(this.deleteId,localStorage.getItem('apiToken')).subscribe((response)=>{
       this.projectMemberService.getProjectMembers(localStorage.getItem('apiToken')).subscribe((tasksResp) => {
         this.members = tasksResp;
+        alert("Member deleted successfully");
     },
     err => {
       if (err.error) {
         alert(err.error.message); 
       }
     }); 
-    })
+     },
+    err => {
+      if (err.error) {
+        alert(err.error.message);
+      }
+    });
   }
 }

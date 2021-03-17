@@ -5,8 +5,8 @@
       <form [formGroup]="memberDeatilsForm">
         <div class="form-group">
           <label for="country" >User Name</label>
-          <select (change)="assigneeChange($event.target.value)"  [ngClass]="{ 'is-invalid':  submitted && membersForm.assignee.errors }"
-            formControlName="assignee" class="form-control" id="assignee">
+          <select (change)="assigneeChange($event.target.value)"  [ngClass]="{ 'is-invalid':  submitted && membersForm.userName.errors }"
+            formControlName="userName" class="form-control" id="userName">
             <option *ngFor="let assignee of assignees" [value]="assignee.id">{{assignee.name}}</option>
           </select>
         </div>
