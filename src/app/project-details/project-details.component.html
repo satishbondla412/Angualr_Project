@@ -1,0 +1,45 @@
+<!-- <p>project-details works!</p> -->
+<div>
+  <div class="dropshadow-box cp-row mb-4 mx-1  mx-md-0">
+    <form [formGroup]="projectDeatilsForm">
+      <!-- <div class="form-group">
+          <label for="username">Project Name</label>
+          <input type="text" formControlName="projectname" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted &&  projectsForm.projectname.errors }" />
+          <div *ngIf="submitted &&  projectsForm.projectname.errors" class="invalid-feedback">
+            <div *ngIf="projectsForm.projectname.errors.required">projectname is required</div>
+          </div>
+        </div> -->
+      <div *ngIf="!projectID" class="form-group">
+        <label for="username">Project Name</label>
+        <input type="text" formControlName="projectname" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted &&  projectsForm.projectname.errors }" />
+        <div *ngIf="submitted &&  projectsForm.projectname.errors" class="invalid-feedback">
+          <div *ngIf="projectsForm.projectname.errors.required">projectname is required</div>
+        </div>
+      </div>
+      <div *ngIf="projectID" class="form-group">
+        <label for="country">Project Name</label>
+        <select (change)="assigneeChange($event.target.value)"
+          [ngClass]="{ 'is-invalid':  submitted && projectsForm.projectname.errors }" formControlName="projectname"
+          class="form-control" id="projectname">
+          <option *ngFor="let project of projects" [value]="project.name">{{project.name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="username">Description</label>
+        <textarea type="text" formControlName="description" class="form-control" rows="5"
+          [ngClass]="{ 'is-invalid': submitted &&  projectsForm.description.errors }"></textarea>
+        <div *ngIf="submitted &&  projectsForm.description.errors" class="invalid-feedback">
+          <div *ngIf="projectsForm.description.errors.required">Description is required</div>
+        </div>
+      </div>
+    </form>
+    <div class="row my-3">
+      <div class="col text-center text-md-right btn-order">
+        <button type="button" class="btn  btn-primary mt-3 mx-2" (click)="cancel()">Cancel</button>
+        <button type="button" (click)="save()" class="btn btn-primary mt-3">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

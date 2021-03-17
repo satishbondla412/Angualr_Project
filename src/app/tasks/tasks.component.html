@@ -1,0 +1,21 @@
+<div class="row mb-5">
+  <div class="col">
+    <button class="btn btn-primary form-control" (click)="createNewTask('fromCreate')">Create A New task</button>
+  </div>
+  <div class="col">
+    <a class="btn btn-primary form-control" (click)="goToStatics()">Member Statics</a>
+  </div>
+</div>
+  <div *ngFor="let task of tasks">
+    <div class="dropshadow-box cp-row mb-4 mx-1  mx-md-0">
+      <a class="user-list-box" href="javaScript:void(0);">
+        <div class="u-img"><img src="../../assets/images/avathar.svg" alt="Profile" class="rounded-circle" /></div>
+        <!-- <div class="u-img" *ngIf="client?.Image !== null"><img [ngClass]="{'border-blue': client?.RemoteClient !== null, 'border-gray': client?.RemoteClient == null}" [src]="client?.Image?.Html?.Url" alt="Profile"
+            class="rounded-circle" /></div> -->
+        <div class="u-info text-truncate" (click)="goToDetailePage(task.id)">
+          <span>{{task.title}}</span>
+        </div>
+        <i class="fa fa-angle-right"></i>
+      </a>
+    </div>
+  </div>  
