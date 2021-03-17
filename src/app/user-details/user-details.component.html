@@ -1,0 +1,88 @@
+<!-- <p>user-details works!</p> -->
+<div >
+    <div class="dropshadow-box cp-row mb-4 mx-1  mx-md-0">
+      <form [formGroup]="userDeatilsForm">
+
+        <div *ngIf ="!userID" class="form-group">
+          <label for="username">User Name</label>
+          <input type="text" formControlName="assignee" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted &&  usersForm.assignee.errors }" />
+          <div *ngIf="submitted &&  usersForm.assignee.errors" class="invalid-feedback">
+            <div *ngIf="usersForm.assignee.errors.required">user name is required</div>
+          </div>
+        </div>
+        <div *ngIf ="userID" class="form-group">
+          <label for="country">User Name</label>
+          <select (change)="assigneeChange($event.target.value)"  [ngClass]="{ 'is-invalid':  submitted && usersForm.assignee.errors }"
+            formControlName="assignee" class="form-control" id="assignee">
+            <option *ngFor="let assignee of assignees" [value]="assignee.id">{{assignee.name}}</option>
+          </select>
+        </div>
+
+        <div *ngIf ="userID" class="form-group">
+          <label for="loginId">Login Id</label>
+          <input type="text" formControlName="loginId" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted &&  usersForm.loginId.errors }" />
+          <div *ngIf="submitted &&  usersForm.loginId.errors" class="invalid-feedback">
+            <div *ngIf="usersForm.loginId.errors.required">loginId is required</div>
+          </div>
+        </div>
+
+        <div *ngIf ="!userID" class="form-group">
+          <label for="password">Password</label>
+          <input type="password" formControlName="password" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted &&  usersForm.password.errors }" />
+          <div *ngIf="submitted &&  usersForm.password.errors" class="invalid-feedback">
+            <div *ngIf="usersForm.password.errors.required">password is required</div>
+          </div>
+        </div>
+        <!-- <div class="form-group">
+          <label for="role">Role</label>
+          <input type="text" formControlName="role" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted &&  usersForm.role.errors }" />
+          <div *ngIf="submitted &&  usersForm.role.errors" class="invalid-feedback">
+            <div *ngIf="usersForm.role.errors.required">role is required</div>
+          </div>
+        </div> -->
+
+        <div class="form-group">
+          <label for="country" >Role</label>
+          <select (change)="taskStatusChange($event.target.value)"  [ngClass]="{ 'is-invalid': submitted &&  usersForm.role.errors }"
+            formControlName="role" class="form-control">
+            <option *ngFor="let role of userRoles" [value]="role.name">{{role.name}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" formControlName="email" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted &&  usersForm.email.errors }" />
+          <div *ngIf="submitted &&  usersForm.email.errors" class="invalid-feedback">
+            <div *ngIf="usersForm.email.errors.required">Email is required</div>
+          </div>
+        </div>
+        <!-- <div class="form-group">
+          <label for="email">Password</label>
+          <input type="text" formControlName="password" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted &&  usersForm.password.errors }" />
+          <div *ngIf="submitted &&  usersForm.password.errors" class="invalid-feedback">
+            <div *ngIf="usersForm.password.errors.required">password is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Confirm Password</label>
+          <input type="text" formControlName="confirmPassword" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted &&  usersForm.confirmPassword.errors }" />
+          <div *ngIf="submitted &&  usersForm.confirmPassword.errors" class="invalid-feedback">
+            <div *ngIf="usersForm.confirmPassword.errors.required">confirmPassword is required</div>
+          </div>
+        </div> -->
+      </form>
+      <div class="row my-3">
+        <div class="col text-center text-md-right btn-order">
+          <button type="button"  class="btn  btn-primary mt-3 mx-2" (click)="cancel()">Cancel</button>
+          <button type="button" (click)="save()" class="btn btn-primary mt-3">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>

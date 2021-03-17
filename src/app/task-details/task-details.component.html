@@ -1,0 +1,66 @@
+<div >
+    <div class="dropshadow-box cp-row mb-4 mx-1  mx-md-0">
+      <form [formGroup]="taskDeatilsForm">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" formControlName="title" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted &&  tasksForm.title.errors }" />
+          <div *ngIf="submitted &&  tasksForm.title.errors" class="invalid-feedback">
+            <div *ngIf="tasksForm.title.errors.required">Title is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="username">Description</label>
+          <input type="text" formControlName="description" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted &&  tasksForm.description.errors }" />
+          <div *ngIf="submitted &&  tasksForm.description.errors" class="invalid-feedback">
+            <div *ngIf="tasksForm.description.errors.required">Description is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="country" >Assigned</label>
+          <select (change)="assigneeChange($event.target.value)"  [ngClass]="{ 'is-invalid':  submitted && tasksForm.assignee.errors }"
+            formControlName="assignee" class="form-control" id="assignee">
+            <option *ngFor="let assignee of assignees" [value]="assignee.id">{{assignee.name}}</option>
+          </select>
+          <!-- <div
+            *ngIf="(billingDetails.Country.touched && billingDetails.Country.errors) || (submitted && billingDetails.Country.errors)">
+            <div class='text-danger'
+              *ngIf="billingDetails.Country.errors.required">{{'WITH_EXISTING_CREDIT_CARD.country_required' | translate}}</div>
+          </div> -->
+        </div>
+        <div class="form-group">
+          <label for="country" >Project Name</label>
+          <select [ngClass]="{ 'is-invalid':  submitted && tasksForm.assignee.errors }"
+            formControlName="projectID" class="form-control" id="projectID">
+            <option *ngFor="let project of projects" [value]="project.id">{{project.name}}</option>
+          </select>
+          <!-- <div
+            *ngIf="(billingDetails.Country.touched && billingDetails.Country.errors) || (submitted && billingDetails.Country.errors)">
+            <div class='text-danger'
+              *ngIf="billingDetails.Country.errors.required">{{'WITH_EXISTING_CREDIT_CARD.country_required' | translate}}</div>
+          </div> -->
+        </div>
+        <div class="form-group">
+          <label for="country" >Task Status</label>
+          <select (change)="taskStatusChange($event.target.value)"  [ngClass]="{ 'is-invalid': submitted &&  tasksForm.taskStatus.errors }"
+            formControlName="taskStatus" class="form-control">
+            <option *ngFor="let taskStatus of taskStatuses" [value]="taskStatus.name">{{taskStatus.name}}</option>
+          </select>
+          <!-- <div
+            *ngIf="(billingDetails.Country.touched && billingDetails.Country.errors) || (submitted && billingDetails.Country.errors)">
+            <div class='text-danger'
+              *ngIf="billingDetails.Country.errors.required">{{'WITH_EXISTING_CREDIT_CARD.country_required' | translate}}</div>
+          </div> --> 
+        </div>
+      </form>
+      <div class="row my-3">
+        <div class="col text-center text-md-right btn-order">
+          <button type="button"  class="btn  btn-primary mt-3 mx-2" (click)="cancel()">Cancel</button>
+          <button type="button" (click)="saveTask()" class="btn btn-primary mt-3">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  

@@ -1,0 +1,35 @@
+<div class="login-container">
+  <h2>Login</h2>
+  <div class="login-form-container">
+    <form [formGroup]="loginForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" formControlName="userName" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && userForm.userName.errors }" />
+        <div *ngIf="submitted && userForm.userName.errors" class="invalid-feedback">
+          <div *ngIf="userForm.userName.errors.required">Username is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && userForm.password.errors }" />
+        <div *ngIf="submitted && userForm.password.errors" class="invalid-feedback">
+          <div *ngIf="userForm.password.errors.required">Password is required</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary form-control" (click)="onSubmit()" >Login</button>
+        </div>
+        <div class="col">
+          <a class="btn btn-primary form-control">Forgot Password</a>
+        </div>
+      </div>
+      <div class="form-group submit-button">
+        <p>If you are not registered, Please register <a class="cursor-pointer" (click)="goToRegistration()">here</a></p>
+      </div>
+      <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "default" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+    </form>
+  </div>
+</div>
