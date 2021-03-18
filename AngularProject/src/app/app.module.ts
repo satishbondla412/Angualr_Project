@@ -36,6 +36,7 @@ import {StaticsService} from './services/statics.service';
 import { LogoutComponent } from './logout/logout.component';
 import { LogoutService } from './services/logout.service';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     ChartsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),
     BsDropdownModule.forRoot(),
     NgxSpinnerModule,
     Ng4LoadingSpinnerModule.forRoot()

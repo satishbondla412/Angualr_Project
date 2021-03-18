@@ -59,10 +59,6 @@ export class RegisterFormComponent implements OnInit {
         alert(err.error.message);
       }
     });
-    // // this.registerService.registeruser(this.registerdata).subscribe
-    // this.registerService.registeruser(this.registerdata).subscribe(
-    //   res=> console.log(res)
-    // )
 
   }
 }

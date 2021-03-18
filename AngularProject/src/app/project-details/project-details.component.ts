@@ -19,6 +19,9 @@ export class ProjectDetailsComponent implements OnInit {
   projects;
   projectID;
   projectDeatils;
+  myDate;	
+  myDate1;
+  deleteId;
 
   constructor(
     private fb: FormBuilder,
@@ -47,11 +50,14 @@ export class ProjectDetailsComponent implements OnInit {
     if (this.projectID) {
       this.projectsService.getOneProject(this.projectID, localStorage.getItem('apiToken')).subscribe((respDeatils) => {
         this.projectDeatils = respDeatils;
+        this.myDate = respDeatils.start_date;
+        this.myDate1 = respDeatils.end_date;
+        debugger;
         this.formBuilder(this.projectDeatils);
         this.spinner.hide();
       },
       err => {
-        this.spinner.hide();
+        this.spinner.hide(); 
         if (err.error) {
           alert(err.error.message);
         }
@@ -59,6 +65,8 @@ export class ProjectDetailsComponent implements OnInit {
     }
     else {
       this.projectDeatils = null;
+      this.myDate = new Date();
+      this.myDate1 = new Date();
       this.formBuilder(this.projectDeatils);
       this.spinner.hide();
     }
@@ -68,7 +76,9 @@ export class ProjectDetailsComponent implements OnInit {
     let details = data ? data : null;  
     this.projectDeatilsForm = this.fb.group({
     projectname: [ (details && details.name) ? details.name : '', Validators.required],
-    description: [ (details && details.description) ?details.description : '', Validators.required]
+    description: [ (details && details.description) ?details.description : '', Validators.required],
+    startdate: [ (details && details.start_date) ?details.start_date :  new Date(), Validators.required],
+    enddate: [ (details && details.end_date) ?details.end_date :  new Date(),Validators.required]
   });
 }
 
@@ -87,17 +97,23 @@ export class ProjectDetailsComponent implements OnInit {
     this.router.navigate([`projects`]);
   }
 
+  getDate(_date) {
+    var date = new Date(_date), mnth = ("0" + (date.getMonth() + 1)).slice(-2), day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join("-");
+}
+
   save() {
     this.submitted=true;
     if(this.projectDeatilsForm.valid){
     let formValue = this.projectDeatilsForm.value;
+    let sdate = this.getDate(formValue.startdate);
+    let edate = this.getDate(formValue.enddate);
         const formReqData = {
           api_token: localStorage.getItem('apiToken'),
           name: formValue.projectname,
           description:formValue.description,
-         // AssignedTo: formValue.assignee,
-          // project_id: formValue.projectID,
-          // status: formValue.taskStatus
+          start_date: sdate,
+           end_date: edate
         };
          if(!this.projectID){
           this.projectsService.CreateProject(formReqData).subscribe(()=>{
@@ -114,6 +130,7 @@ export class ProjectDetailsComponent implements OnInit {
          else {
           this.projectsService.updateProject(this.projectID, formReqData).subscribe((response)=>{
                this.router.navigate([`projects`]);
+               alert("Project updated successfully");
           },
           err => {
             this.spinner.hide();

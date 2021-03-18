@@ -105,16 +105,17 @@ export class TasksService {
       }),
         catchError(error => this.handleError(error)));
   }
-  DeleteTask(id,payLoad){
-    const bodyString = payLoad;
-    const headers = new HttpHeaders({
+  DeleteTask(id,apiToken){
+    debugger;
+    let headers;
+    headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    const httpOptions = {
-      headers: headers
-    };
-    const url = `http://localhost:8000/api/tasks/${id}`
-    return this.http.post(url,bodyString,httpOptions)
+  const httpOptions = {
+    headers: headers
+  };
+    const url = `http://localhost:8000/api/tasks/${id}?api_token=${apiToken}`
+    return this.http.delete(url,httpOptions)
       .pipe(map((response) => {
         let resp: any;
         resp = response;

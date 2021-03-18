@@ -14,13 +14,14 @@ export class UsersService {
   constructor(private http: HttpClient) {}
 
  getUsers(api_token): Observable<any> {
+   debugger;
     let headers;
       headers = new HttpHeaders({
         'Content-Type': 'application/json'
         // 'Authorization': `bearer + ${localStorage.getItem('id_token')}`
       });
     const httpOptions = {
-      headers: headers
+      headers: headers 
     };
     const url = `http://localhost:8000/api/users/?api_token=${api_token}`
     // const url = url;

@@ -63,7 +63,12 @@ export class ManageProjectsComponent implements OnInit {
         alert(err.error.message);
       }
     }); 
-    })
+    },
+    err => {
+      if (err.error) {
+        alert("Cannot delete the project. Check dependency");
+      }
+    });
   }
   // delete(){
   //   this.projectsService.deleteProject(this.deleteId,localStorage.getItem('apiToken')).subscribe((response)=>{

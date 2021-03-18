@@ -65,7 +65,7 @@ export class projectMembersComponent implements OnInit {
      },
     err => {
       if (err.error) {
-        alert(err.error.message);
+        alert("Cannot delete the member. Check dependency");
       }
     });
   }

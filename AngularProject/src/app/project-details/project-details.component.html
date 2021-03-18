@@ -34,6 +34,34 @@
           <div *ngIf="projectsForm.description.errors.required">Description is required</div>
         </div>
       </div>
+
+      <!-- <div class="form-group">
+        <label for="username">Start Date</label>
+        <input type="text" formControlName="startdate" class="form-control" 
+          [ngClass]="{ 'is-invalid': submitted &&  projectsForm.startdate.errors }"/>
+        <div *ngIf="submitted &&  projectsForm.startdate.errors" class="invalid-feedback">
+          <div *ngIf="projectsForm.startdate.errors.required">Start Date is required</div>
+        </div>
+      </div> -->
+
+      <div class="form-group">
+        <label for="startdate">Start Date</label>
+        <input type="text" formControlName="startdate" class="form-control form-control-sm box-shadow font-14" placeholder="Choose date"  bsDatepicker  value="{{ myDate | date:'MM/dd/yyyy' }}"
+          [ngClass]="{ 'is-invalid': submitted &&  projectsForm.startdate.errors }" />
+        <div *ngIf="submitted &&  projectsForm.startdate.errors" class="invalid-feedback">
+          <div *ngIf="projectsForm.startdate.errors.required">Start Date is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="enddate">End Date</label>
+        <input type="text" formControlName="enddate" class="form-control form-control-sm box-shadow font-14" placeholder="Choose date"  bsDatepicker  value="{{ myDate1 | date:'MM/dd/yyyy' }}"
+          [ngClass]="{ 'is-invalid': submitted &&  projectsForm.enddate.errors }" />
+        <div *ngIf="submitted &&  projectsForm.enddate.errors" class="invalid-feedback">
+          <div *ngIf="projectsForm.enddate.errors.required">End Date is required</div>
+        </div>
+      </div>
+
     </form>
     <div class="row my-3">
       <div class="col text-center text-md-right btn-order">

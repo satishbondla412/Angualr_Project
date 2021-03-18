@@ -67,6 +67,7 @@ export class StaticsComponent implements OnInit {
    
     if (this.role == 'admin' || this.role == 'manager') {
       this.spinner.show();
+      debugger;
       this.staticsService.getStatics(localStorage.getItem('apiToken')).subscribe((resp) => {
         this.statics = resp;
 
@@ -97,10 +98,11 @@ export class StaticsComponent implements OnInit {
      
     } else {
       this.spinner.show();
+      debugger;
       this.staticsService.getOneStatics(this.userID, localStorage.getItem('apiToken')).subscribe((respDeatils) => {
-        this.staticsDetails = respDeatils;
+        this.staticsDetails = respDeatils; 
         this.spinner.hide();
-        this.barChartLabels = [this.staticsDetails[0].name];
+        this.barChartLabels = [this.staticsDetails[0].user];
         this.barChartData = [
           { data: [this.staticsDetails[0].pending], label: 'Pending' },
           { data: [this.staticsDetails[0].resolved], label: 'Resolved' },

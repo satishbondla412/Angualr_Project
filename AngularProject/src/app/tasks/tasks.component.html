@@ -13,7 +13,7 @@
         <!-- <div class="u-img" *ngIf="client?.Image !== null"><img [ngClass]="{'border-blue': client?.RemoteClient !== null, 'border-gray': client?.RemoteClient == null}" [src]="client?.Image?.Html?.Url" alt="Profile"
             class="rounded-circle" /></div> -->
         <div class="u-info text-truncate" (click)="goToDetailePage(task.id)">
-          <span>{{task.title}}</span>
+          <span>{{task.title}} - {{task.name}}</span>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>

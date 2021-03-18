@@ -62,7 +62,7 @@ export class ManageUsersComponent implements OnInit {
      },
     err => {
       if (err.error) {
-        alert(err.error.message);
+        alert("Cannot delete the user. Check dependency");
       }
     });
     

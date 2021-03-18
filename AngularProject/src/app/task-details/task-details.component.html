@@ -51,18 +51,20 @@
 
         <div class="form-group">
           <label for="deadline">Dead Line</label>
-          <input type="text" formControlName="deadline" class="form-control"
+          <input type="text" formControlName="deadline" class="form-control form-control-sm box-shadow font-14" placeholder="Choose date"  bsDatepicker  value="{{ myDate | date:'MM/dd/yyyy' }}"
             [ngClass]="{ 'is-invalid': submitted &&  tasksForm.deadline.errors }" />
           <div *ngIf="submitted &&  tasksForm.deadline.errors" class="invalid-feedback">
-            <div *ngIf="tasksForm.deadline.errors.required">Description is required</div>
+            <div *ngIf="tasksForm.deadline.errors.required">Dead line is required</div>
           </div>
         </div>
+
 
       </form>
       <div class="row my-3">
         <div class="col text-center text-md-right btn-order">
           <button type="button"  class="btn  btn-primary mt-3 mx-2" (click)="cancel()">Cancel</button>
           <button type="button" (click)="saveTask()" class="btn btn-primary mt-3">Save</button>
+          <button type="button" (click)="deleteTask()" class="btn btn-danger mt-3 mx-3">Delete</button>
         </div>
       </div>
     </div>

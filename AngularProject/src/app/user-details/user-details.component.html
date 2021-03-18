@@ -10,7 +10,7 @@
           <div *ngIf="submitted &&  usersForm.assignee.errors" class="invalid-feedback">
             <div *ngIf="usersForm.assignee.errors.required">user name is required</div>
           </div>
-        </div>
+        </div> 
         <div *ngIf ="userID" class="form-group">
           <label for="country">User Name</label>
           <select (change)="assigneeChange($event.target.value)"  [ngClass]="{ 'is-invalid':  submitted && usersForm.assignee.errors }"

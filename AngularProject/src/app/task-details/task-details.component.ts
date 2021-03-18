@@ -21,6 +21,9 @@ export class TasksDetailsComponent implements OnInit {
   submitted = false;
   taskID: any;
   projects;
+  myDate;	
+  deleteId;
+  tasks;
 
   constructor(
     private fb: FormBuilder,
@@ -49,12 +52,14 @@ export class TasksDetailsComponent implements OnInit {
       this.tasksService.getOneTask(this.taskID, localStorage.getItem('apiToken')).subscribe((respDeatils) => {
         
         this.taskDeatils = respDeatils;
+        this.myDate = respDeatils.dead_line;
         this.formBuilder(this.taskDeatils);
         this.spinner.hide();
       });
     }
     else {
       this.taskDeatils = null;
+      this.myDate = new Date();
       this.formBuilder(this.taskDeatils);
       this.spinner.hide();
     }
@@ -68,7 +73,7 @@ export class TasksDetailsComponent implements OnInit {
       assignee: [ (details && details.AssignedTo) ? details.AssignedTo : '', Validators.required],
       projectID: [ (details && details.project_id) ? details.project_id : '', Validators.required],
       taskStatus: [ (details && details.status) ? details.status : '', Validators.required],
-      deadline: [ (details && details.dead_line) ? details.dead_line : '', Validators.required]
+      deadline: [ (details && details.dead_line) ? details.dead_line : new Date()]
     });
   }
 
@@ -87,11 +92,15 @@ export class TasksDetailsComponent implements OnInit {
   cancel() {
     this.router.navigate([`tasks`]);
   }
-
+  getDate(_date) {
+    var date = new Date(_date), mnth = ("0" + (date.getMonth() + 1)).slice(-2), day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join("-");
+}
   saveTask() {
     this.submitted=true;
     if(this.taskDeatilsForm.valid){
     let formValue = this.taskDeatilsForm.value;
+    let date = this.getDate(formValue.deadline);
         const formReqData = {
           api_token: localStorage.getItem('apiToken'),
           title: formValue.title,
@@ -99,22 +108,44 @@ export class TasksDetailsComponent implements OnInit {
           AssignedTo: formValue.assignee,
           project_id: formValue.projectID,
           status: formValue.taskStatus,
-          dead_line :formValue.deadline
+          dead_line :date
         };
          if(!this.taskID){
           this.tasksService.CreateTask(formReqData).subscribe(()=>{
             this.router.navigate([`tasks`]);
-            
-
+            alert("Task Created successfully");
           })
          }
          else {
           this.tasksService.updateTask(this.taskID, formReqData).subscribe((response)=>{
                this.router.navigate([`tasks`]);
+               alert("Task Updated successfully"); 
           }
           )
       }
     }
+    }
+
+    deleteTask() {
+   debugger;
+      this.tasksService.DeleteTask(this.taskID, localStorage.getItem('apiToken')).subscribe((response) => {
+        this.tasksService.getAllTasks(localStorage.getItem('apiToken')).subscribe((tasksResp) => {
+          this.tasks = tasksResp;
+          this.router.navigate([`tasks`]);
+          alert("Task deleted successfully");
+        },
+          err => {
+            if (err.error) {
+              alert(err.error.message);
+            }
+          });
+       },
+      err => {
+        if (err.error) {
+          alert(err.error.message);
+        }
+      });
+      
     }
 
 }
